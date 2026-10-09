@@ -1,6 +1,6 @@
 # CSE 227 — Data Structures II
 
-A benchmarking tool for evaluating sorting algorithms across different input sizes.
+A benchmarking tool for evaluating algorithms across different input sizes.
 
 ## Usage
 
