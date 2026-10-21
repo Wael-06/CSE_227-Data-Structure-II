@@ -7,7 +7,7 @@ def sort(arr):
         for j in range(0, n - i - 1):
             comparisons += 1
             if arr[j] > arr[j + 1]:
-                arr[j], arr[j + 1] = arr[j                 + 1], arr[j]
+                arr[j], arr[j + 1] = arr[j + 1], arr[j]
                 writes += 2
                 swapped = True
         if not swapped:

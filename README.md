@@ -5,12 +5,12 @@ A benchmarking tool for evaluating algorithms across different input sizes.
 ## Usage
 
 Requires `clang++` and `pypy3`.
-`g++` and standard Python can also be used but not recommended .
+standard Python can also be used but not recommended .
+Note: If using `g++`, update the `generate_arrays()` function in `benchmarker_for_py.py`. 
 
 ```bash
-clang++ generator.cpp -o generator
 ./generator
-pypy3 template_for_py.py
+pypy3 benchmarker_for_py.py
 ```
 
 ## Project Structure

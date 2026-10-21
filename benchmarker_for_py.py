@@ -70,7 +70,7 @@ def benchmarking(func, src_arr, expected, trials):
 
     mean_ms = sum(times) / len(times) if times else 0.0
     if len(times) > 1:
-        variance_value = sum((t - mean_ms) ** 2 for t in times) / (len(times) - 1)
+        variance_value = sum((t - mean_ms)**2 for t in times)/(len(times) - 1)
         std_ms = variance_value ** 0.5
     else:
         std_ms = 0.0
@@ -178,12 +178,27 @@ def plot_metric(data, key, ylabel, title, out_name):
 
 def make_plots():
   data = load_results()
-  plot_metric(data, "time_mean_ms", "Time (ms)", "Time vs Array Size", "time_vs_n.png")
-  plot_metric(data, "comparisons", "Comparisons", "Comparisons vs Array Size", "comparisons_vs_n.png")
-  plot_metric(data, "writes", "Writes", "Writes vs Array Size", "writes_vs_n.png")
+  plot_metric(data, "time_mean_ms", "Time (ms)", "Time vs Array Size",
+               "time_vs_n.png")
+  plot_metric(data, "comparisons", "Comparisons", "Comparisons vs Array Size",
+               "comparisons_vs_n.png")
+  plot_metric(data, "writes", "Writes", "Writes vs Array Size",
+               "writes_vs_n.png")
 
+def clean_old():
+    if os.path.exists(RESULTS_CSV):
+        os.remove(RESULTS_CSV)
+    if os.path.exists(REPORTS_DIR):
+        for f in glob.glob(os.path.join(REPORTS_DIR, "*")):
+            os.remove(f)
 
+def generate_arrays():
+    if not os.path.exists(ARRAYS_DIR):
+        os.system("clang++ generator.cpp -o generator && ./generator")
+        
 if __name__ == "__main__":
+    clean_old()
+    generate_arrays()
     algorithms = discover_algos()
     print("Discovered algorithms: " + str(list(algorithms.keys())) + "\n")
     run_benchmarks(algorithms)
