@@ -8,13 +8,17 @@ def sort(arr):
     r=2*i+2
     largest=i
 
-    if(l<hs and a[l]>a[largest]):
-      largest=l
+    if(l<hs):
       comparisons+=1
+      if(a[l]>a[largest]):
+        largest=l
+      
 
-    if(r<hs and a[r]>a[largest]):
-      largest=r
+    if(r<hs):
       comparisons+=1
+      if(a[r]>a[largest]):
+        largest=r
+      
 
     if(largest!=i):
       a[i],a[largest]=a[largest],a[i]
